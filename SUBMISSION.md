@@ -72,7 +72,7 @@ The product is not "AI for hotels." It is the calm memory layer Rosewood specifi
 | Project description | (use the **Project description** section above; if a short version is needed, the next line works) |
 | One-line description | A calm AI memory layer for Rosewood — voice intake, three-panel server view, admin operating surface, and a post-stay loop. Anthropic + ElevenLabs. No new hardware. |
 | Public GitHub repository | `https://github.com/CarlKho-Minerva/rosewood-intelligence-demo` |
-| Deployed app | (Vercel URL — fill in after `vercel --prod` completes) |
+| Deployed app | `https://rosewood-intelligence-demo.vercel.app` |
 | Demo video | (Loom URL — Carl to record + paste) |
 | Partner technologies used | `Anthropic`, `ElevenLabs` |
 
