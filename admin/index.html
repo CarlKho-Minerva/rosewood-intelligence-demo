@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin · Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../slides/shared/styles.css">
+<style>
+  body { overflow: auto; }
+  .admin-wrap {
+    min-height: 100vh;
+    padding: 28px 32px 60px;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr;
+  }
+  .ad-top {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-soft);
+  }
+  .ad-top .left { display: flex; align-items: center; gap: 14px; }
+  .ad-top .left .mark {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    color: var(--brand);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .ad-top .left h1 {
+    font-size: 18px;
+    letter-spacing: -0.02em;
+  }
+  .ad-top .left h1 small {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .ad-top .right { display: flex; gap: 10px; align-items: center; }
+  .nav-pill {
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .nav-pill.active { color: var(--green); border-color: rgba(15, 118, 110, 0.22); background: var(--green-soft); }
+  .ad-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1.1fr 1.4fr 1fr;
+  }
+  .module {
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow-soft);
+    padding: 22px 22px 20px;
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .module h3 {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brand);
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .module h3::before {
+    content: '';
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .module .sub {
+    margin-top: -10px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .wide { grid-column: span 3; }
+  .double { grid-column: span 2; }
+  .single { grid-column: span 1; }
+
+  /* internal wiki module */
+  .wiki-row {
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer;
+  }
+  .wiki-row strong { font-size: 13px; font-weight: 700; }
+  .wiki-row small { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+  .wiki-row .pill {
+    margin-left: auto;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--brand-soft);
+    color: var(--brand);
+  }
+
+  /* chat module */
+  .chat {
+    display: flex; flex-direction: column;
+    gap: 10px;
+    min-height: 360px;
+  }
+  .chat-msg {
+    padding: 12px 14px;
+    border-radius: 14px;
+    max-width: 80%;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .chat-msg.user {
+    align-self: flex-end;
+    background: var(--text);
+    color: #fff;
+  }
+  .chat-msg.bot {
+    align-self: flex-start;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--text);
+  }
+  .chat-msg.bot small {
+    display: block;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .chat .typing {
+    align-self: flex-start;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 13px;
+    display: none;
+  }
+  .chat.thinking .typing { display: block; }
+  .chat-input {
+    margin-top: auto;
+    display: flex; gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+  .chat-input input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+  }
+  .chat-input input:focus { outline: none; border-color: var(--brand-line); }
+  .chat-input button {
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--text);
+    background: var(--text);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .chat-suggest {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .chat-suggest button {
+    padding: 7px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .chat-suggest button:hover { border-color: var(--brand-line); color: var(--brand); }
+
+  @media (max-width: 1100px) {
+    .ad-grid { grid-template-columns: 1fr 1fr; }
+    .wide, .double { grid-column: span 2; }
+  }
+  @media (max-width: 720px) {
+    .ad-grid { grid-template-columns: 1fr; }
+    .wide, .double, .single { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+<div class="admin-wrap">
+  <!-- Top bar -->
+  <div class="ad-top">
+    <div class="left">
+      <div class="mark">R</div>
+      <h1>Admin · Sand Hill<small>property operating surface · the app that wasn't there</small></h1>
+    </div>
+    <div class="right">
+      <a class="nav-pill active" href="./">Admin</a>
+      <a class="nav-pill" href="../live/">Live transcribe</a>
+      <a class="nav-pill" href="../slides/pre/p1.html">Demo</a>
+      <a class="nav-pill" href="../">Home</a>
+    </div>
+  </div>
+
+  <div class="ad-grid">
+    <!-- Rate recommendation -->
+    <div class="module">
+      <h3>Rate recommendation</h3>
+      <div class="sub">Reventel baseline + event signal + Claude reasoning</div>
+      <div class="rate-row"><span class="day">THU · 5/16</span><span class="price">$1,420</span><span class="delta up">+5%</span></div>
+      <div class="rate-row"><span class="day">FRI · 5/17</span><span class="price">$1,485</span><span class="delta up">+8%</span></div>
+      <div class="rate-row"><span class="day">SAT · 5/18</span><span class="price">$1,620</span><span class="delta up">+14%</span></div>
+      <div class="rate-row"><span class="day">SUN · 5/19</span><span class="price">$1,380</span><span class="delta down">−4%</span></div>
+      <div style="margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: var(--green-soft); border: 1px solid rgba(15,118,110,0.2); font-size: 12px; color: var(--green); font-weight: 600; line-height: 1.55;">
+        Stanford Open House detected · Reventel override +$28K weekend upside
+      </div>
+    </div>
+
+    <!-- Ticket queue -->
+    <div class="module">
+      <h3>Ticket queue · live</h3>
+      <div class="sub">Routed from observations + speech notes (ElevenLabs STT)</div>
+      <div class="ticket-card" style="opacity:1; transform:none;">
+        <span class="ticket-tag">HVAC · Room 417</span>
+        <div class="ticket-title">"The sink is broken."</div>
+        <div class="ticket-meta">Captured · 2:31 PM · routed automatically</div>
+        <div class="ticket-route">→ Maintenance · floor 4 · ETA 11 min</div>
+      </div>
+      <div class="ticket-card" style="opacity:1; transform:none;">
+        <span class="ticket-tag">F&amp;B · Room 417</span>
+        <div class="ticket-title">Welcome water · per dehydration flag</div>
+        <div class="ticket-meta">Auto · from observation P5</div>
+        <div class="ticket-route">→ F&amp;B · floor 4 · sent</div>
+      </div>
+      <div class="ticket-card" style="opacity:1; transform:none;">
+        <span class="ticket-tag">Concierge · Room 511</span>
+        <div class="ticket-title">Anniversary table tonight · 7 PM</div>
+        <div class="ticket-meta">Auto · from post-stay memory · Dr. Adler · 7th stay</div>
+        <div class="ticket-route">→ Restaurant · vineyard view</div>
+      </div>
+    </div>
+
+    <!-- Guests checked in -->
+    <div class="module">
+      <h3>Guests · checked in</h3>
+      <div class="sub">Opera as source of record · synced 12s ago</div>
+      <div class="guest-card"><div class="av">E</div><div class="name">Ms. Eliza Chen<small>Room 417 · 3rd stay · spa tonight</small></div></div>
+      <div class="guest-card"><div class="av">J</div><div class="name">Mr. Jain<small>Room 312 · 1st stay · YC investor</small></div></div>
+      <div class="guest-card"><div class="av">A</div><div class="name">Dr. Adler<small>Room 511 · 7th stay · anniversary</small></div></div>
+      <div class="guest-card"><div class="av">P</div><div class="name">Mr. Park<small>Room 209 · 2nd stay · vegetarian</small></div></div>
+    </div>
+
+    <!-- Internal wiki / knowledge base (double width) -->
+    <div class="module double">
+      <h3>Internal wiki · property knowledge</h3>
+      <div class="sub">Claude retrieves from here when answering staff and guest questions</div>
+      <div class="wiki-row">
+        <div>
+          <strong>F&amp;B menu · spring 2026</strong>
+          <small>Vineyard tasting · 7 courses · vegetarian + GF flagged</small>
+        </div>
+        <span class="pill">Updated 2d</span>
+      </div>
+      <div class="wiki-row">
+        <div>
+          <strong>Room layouts · Vineyard suites</strong>
+          <small>East-facing · king bed · balcony · 67°F default</small>
+        </div>
+        <span class="pill">Static</span>
+      </div>
+      <div class="wiki-row">
+        <div>
+          <strong>Event calendar · Bay Area</strong>
+          <small>Stanford Open House (5/18) · Fogarty Winery weekend · SFO arrivals</small>
+        </div>
+        <span class="pill">Live feed</span>
+      </div>
+      <div class="wiki-row">
+        <div>
+          <strong>Calistoga 2027 · pre-opening list</strong>
+          <small>32 Sand Hill regulars ported · day-one continuity</small>
+        </div>
+        <span class="pill">Cross-property</span>
+      </div>
+      <div class="wiki-row">
+        <div>
+          <strong>Spa partners · Vineyard package</strong>
+          <small>60 min · pressure-relief default · early-evening slots</small>
+        </div>
+        <span class="pill">Updated 1w</span>
+      </div>
+    </div>
+
+    <!-- Claude chat module -->
+    <div class="module">
+      <h3>Ask the system</h3>
+      <div class="sub">Claude · grounded on the wiki + guest memory</div>
+      <div class="chat" id="chat">
+        <div class="chat-msg bot">
+          What would you like to know about a guest, the rates, or tonight's service?
+          <small>Claude · ready</small>
+        </div>
+        <div class="typing">Claude is thinking…</div>
+        <div class="chat-input">
+          <input type="text" id="chat-input" placeholder="Ask anything…" />
+          <button id="chat-send">Ask</button>
+        </div>
+        <div class="chat-suggest">
+          <button data-q="What does Eliza Chen care about this trip?">Eliza Chen's interests</button>
+          <button data-q="Why is Saturday's rate up 14%?">Saturday +14% rate</button>
+          <button data-q="Who's checking in tomorrow and what should staff prep?">Tomorrow's arrivals</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Scripted demo responses — wired this way so it works without an API key
+  // in the public repo. Swap for a real /api/chat endpoint later.
+  const responses = {
+    "What does Eliza Chen care about this trip?":
+      "Ms. Chen is on her 3rd stay (Vineyard Suite, east-facing, 67°F). The pre-arrival call surfaced winery interest and a Stanford tour. Profile flags: no peanuts, coffee at 7 AM. She added a spa hour for tonight on arrival — likely pressure-relief. Suggest: confirm Fogarty tasting (private) for Sunday + offer Calistoga 2027 pre-opening invitation tomorrow at checkout.",
+    "Why is Saturday's rate up 14%?":
+      "Reventel base for Saturday is $1,420. Stanford Open House (5/18) is in the wiki event calendar; 70% of incoming guests have past Sand Hill stays. Demand signal + winery weekend bumps recommended rate to $1,620 (+14%). Projected weekend upside: +$28K vs default override.",
+    "Who's checking in tomorrow and what should staff prep?":
+      "5 returning guests inbound tomorrow. 3 want east-facing rooms; 1 anniversary stay (Dr. Adler, 7th visit — table at 7 PM is on the ticket queue). Prep: welcome water in all Vineyard suites, coffee carts staged for 7 AM, and the Calistoga 2027 letter folded into the welcome packet for the top-3 spend guests."
+  };
+
+  const chat = document.getElementById('chat');
+  const input = document.getElementById('chat-input');
+  const send = document.getElementById('chat-send');
+
+  function addMsg(text, who, meta) {
+    const m = document.createElement('div');
+    m.className = 'chat-msg ' + who;
+    m.innerHTML = text + (meta ? '<small>' + meta + '</small>' : '');
+    chat.insertBefore(m, chat.querySelector('.typing'));
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function ask(q) {
+    if (!q) return;
+    addMsg(q, 'user');
+    input.value = '';
+    chat.classList.add('thinking');
+    const answer = responses[q] || "I can answer questions about specific guests, rates, or operations. Try one of the suggestions below.";
+    setTimeout(() => {
+      chat.classList.remove('thinking');
+      addMsg(answer, 'bot', 'Claude · grounded on wiki + guest memory');
+    }, 1200);
+  }
+
+  send.addEventListener('click', () => ask(input.value.trim()));
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') ask(input.value.trim()); });
+  document.querySelectorAll('.chat-suggest button').forEach((btn) => {
+    btn.addEventListener('click', () => ask(btn.dataset.q));
+  });
+</script>
+</body>
+</html>

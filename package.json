@@ -1,0 +1,10 @@
+{
+  "name": "rosewood-intelligence-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Rosewood Intelligence — Hospitality 2030 hackathon demo (slides + admin + live Scribe).",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  }
+}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P6 · HVAC dial-in (2030) — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p6 .ac-overlay .digits { display: none; }
+  body.slide-p6.step-0 .ac-overlay .digits[data-step="0"] { display: inline-block; }
+  body.slide-p6.step-1 .ac-overlay .digits[data-step="1"] { display: inline-block; }
+  body.slide-p6.step-2 .ac-overlay .digits[data-step="2"] { display: inline-block; }
+  body.slide-p6.step-3 .ac-overlay .digits[data-step="3"] { display: inline-block; }
+  body.slide-p6.step-1 .ac-overlay .digits,
+  body.slide-p6.step-2 .ac-overlay .digits { animation: tempStep 0.55s ease; color: var(--brand); }
+  body.slide-p6.step-3 .ac-overlay .digits { animation: tempLand 0.7s ease forwards; color: var(--green); }
+
+  body.slide-p6 .tele-row.r1,
+  body.slide-p6 .tele-row.r2 { opacity: 1; transform: none; }
+  body.slide-p6 .tele-row.r3 { opacity: 0; transform: translateX(18px); }
+  body.slide-p6.step-3 .tele-row.r3 { opacity: 1; transform: none; transition-delay: 0.4s; }
+
+  .ac-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    text-align: center;
+  }
+  .ac-overlay .reading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(100px, 14vw, 180px);
+    line-height: 1;
+    color: #fff;
+    letter-spacing: -0.05em;
+    text-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+  .ac-overlay .reading sup {
+    font-size: 0.35em;
+    vertical-align: super;
+    margin-left: 8px;
+    color: rgba(255, 255, 255, 0.86);
+  }
+  .ac-overlay .label {
+    margin-top: 10px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.86);
+  }
+  .ac-overlay .hint {
+    margin-top: 18px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(17, 24, 39, 0.35);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  body.slide-p6.step-3 .ac-overlay .hint { opacity: 0; transition: opacity 0.3s ease; }
+</style>
+</head>
+<body
+  class="slide-p6"
+  data-steps="3"
+  data-prev="p5.html"
+  data-next="p7.html"
+  data-mode="Server"
+  data-tag="During"
+  data-phase="HVAC · 2030 control"
+  data-index="6"
+  data-total="13">
+
+<div class="stage split-50">
+  <!-- Left: real aircon control video with click-to-step overlay -->
+  <div class="pane" style="padding: 0; position: relative;">
+    <div class="video-pane" style="position: relative;">
+      <div class="video-slot" data-src="../../public/videos/p6_web.mp4">
+        <div class="slot-label">
+          <div class="slot-glyph">▶</div>
+          <div class="slot-tag">Video · 2030 HVAC</div>
+          <div class="slot-headline">Smart aircon control · physical touch</div>
+          <div class="slot-meta">loading…</div>
+        </div>
+      </div>
+      <div class="ac-overlay">
+        <div class="reading"><span class="digits" data-step="0">60</span><span class="digits" data-step="1">68</span><span class="digits" data-step="2">70</span><span class="digits" data-step="3">67</span><sup>°F</sup></div>
+        <div class="label">Vineyard Suite · target 67°F</div>
+        <div class="hint">Click to dial-in</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: telemetry; sensor row arrives on final step -->
+  <div class="pane surface">
+    <div class="telemetry">
+      <h5>Telemetry · stay stream</h5>
+      <div class="tele-row staff r1"><div class="dot"></div><div class="body"><strong>Heavy luggage observed</strong><small>Staff · Marco · 2:04 PM</small></div></div>
+      <div class="tele-row staff r2"><div class="dot"></div><div class="body"><strong>F&amp;B alerted · welcome water</strong><small>Auto · 2:04 PM</small></div></div>
+      <div class="tele-row sensor r3"><div class="dot"></div><div class="body"><strong>Room cooled to 67°F · welcome temp</strong><small>Sensor · HVAC · 2:06 PM · auto-set per profile</small></div></div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

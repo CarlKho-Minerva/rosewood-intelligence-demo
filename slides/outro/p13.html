@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P13 · Architecture &amp; thanks — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p13 .outro-stage > * { opacity: 0; transform: translateY(8px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  body.slide-p13.step-0 .arch-diagram,
+  body.slide-p13.step-1 .arch-diagram,
+  body.slide-p13.step-2 .arch-diagram,
+  body.slide-p13.step-3 .arch-diagram { opacity: 1; transform: none; }
+  body.slide-p13.step-0 h2.headline { opacity: 1; transform: none; }
+  body.slide-p13.step-1 h2.headline,
+  body.slide-p13.step-2 h2.headline,
+  body.slide-p13.step-3 h2.headline { opacity: 1; transform: none; }
+  body.slide-p13.step-1 .outro-cards { opacity: 1; transform: none; transition-delay: 0.1s; }
+  body.slide-p13.step-2 .outro-cards { opacity: 1; transform: none; }
+  body.slide-p13.step-3 .outro-cards { opacity: 1; transform: none; }
+  body.slide-p13.step-2 .outro-signature,
+  body.slide-p13.step-3 .outro-signature { opacity: 1; transform: none; transition-delay: 0.1s; }
+  body.slide-p13.step-3 .thanks { opacity: 1; transform: none; transition-delay: 0.1s; }
+
+  .thanks {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    color: var(--brand);
+    text-align: center;
+    margin-top: 8px;
+    font-style: italic;
+  }
+</style>
+</head>
+<body
+  class="slide-p13"
+  data-steps="3"
+  data-prev="../post/p12.html"
+  data-next=""
+  data-tag="Outro"
+  data-phase="Architecture · thanks"
+  data-index="13"
+  data-total="13">
+
+<div class="outro-stage">
+  <h2 class="headline" style="margin: 0; font-size: clamp(28px, 3vw, 40px);">One calm place to remember the guest.</h2>
+
+  <!-- Step 1: architecture diagram (PRE / DURING / POST data flow) -->
+  <div class="arch-diagram">
+    <div class="lane">
+      <h5>Pre · arrival</h5>
+      <ul>
+        <li>Voice intake (ElevenLabs Scribe v2)</li>
+        <li>Claude · agentic research</li>
+        <li>Profile + rate optimization</li>
+      </ul>
+    </div>
+    <div class="lane">
+      <h5>During · stay</h5>
+      <ul>
+        <li>Telemetry · sensors + staff notes</li>
+        <li>Claude synthesis (server copilot)</li>
+        <li>Three-panel server view</li>
+        <li>Admin · rate · tickets · guests · chat</li>
+      </ul>
+    </div>
+    <div class="lane">
+      <h5>Post · continuity</h5>
+      <ul>
+        <li>Photo booth → personalized newsletter</li>
+        <li>Cross-property fingerprint</li>
+        <li>Calistoga 2027 · pre-opening list</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Step 2: the newsletter is one of many; admin dashboard is the surface -->
+  <div class="outro-cards">
+    <div class="outro-card">
+      <div class="ot">The app that wasn't there</div>
+      <h4>Admin operating surface</h4>
+      <p>Rate recommendation · ticket queue · guests · internal wiki · chat — one surface. Live at <strong>/admin</strong> in the deployed app.</p>
+    </div>
+    <div class="outro-card">
+      <div class="ot">Post · one of many</div>
+      <h4>The newsletter is a card</h4>
+      <p>The same fingerprint drives anniversaries, alumni mixers, regional openings — surfaced in the universal Rosewood app.</p>
+      <div class="mini-photo" style="background-image: url('../../public/photo-of-stay.png');"></div>
+    </div>
+    <div class="outro-card">
+      <div class="ot">Growth</div>
+      <h4>Calistoga · day one</h4>
+      <p>When the new property opens in 2027, the regulars don't start at zero. The memory travels with the guest, not the building.</p>
+    </div>
+  </div>
+
+  <!-- Step 3: Carl's signature + thanks -->
+  <div class="outro-signature">
+    <div class="sig-mark">C</div>
+    <div class="sig-meta">
+      <strong>Carl Vincent Kho · Carl_NotANerd</strong>
+      Solo build · May 16, 2026 · Rosewood Sand Hill · Anthropic + ElevenLabs
+    </div>
+  </div>
+
+  <div class="thanks">Thank you.</div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

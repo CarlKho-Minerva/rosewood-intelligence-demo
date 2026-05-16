@@ -8,6 +8,30 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p11 .guest-strip {
+    margin-top: 18px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--text);
+  }
+  body.slide-p11 .guest-strip .av {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-line);
+    display: grid; place-items: center;
+    color: var(--brand);
+    font-family: 'Cormorant Garamond', serif;
+  }
+  body.slide-p11 .guest-strip small {
+    display: block; color: var(--muted); font-style: italic; margin-top: 2px;
+  }
+</style>
 </head>
 <body
   class="slide-p11"
@@ -17,16 +41,25 @@
   data-tag="Post"
   data-phase="Photo booth"
   data-index="11"
-  data-total="12">
+  data-total="13">
 
 <div class="stage center">
   <div class="booth">
     <h5>Rosewood · photo booth</h5>
     <div class="lens">
       <span class="frame-text">Take a photo of your stay</span>
+      <div class="preview" style="background-image: url('../../public/photo-of-stay.png');"></div>
     </div>
     <div class="complimentary">Complimentary drink with your photo</div>
     <button class="shutter" aria-label="Shutter"></button>
+
+    <div class="guest-strip">
+      <div class="av">E</div>
+      <div>
+        <strong>Ms. Eliza Chen · Room 417</strong>
+        <small>3rd stay · day 2 · checkout tomorrow</small>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P9 · Server view complete — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p9 .server-ui .col { opacity: 0; transform: translateY(10px); }
+  body.slide-p9.step-1 .col-tele { opacity: 1; transform: none; transition-delay: 0.05s; }
+  body.slide-p9.step-2 .col-tele { opacity: 1; transform: none; }
+  body.slide-p9.step-2 .col-itin { opacity: 1; transform: none; transition-delay: 0.05s; }
+  body.slide-p9.step-3 .col-tele,
+  body.slide-p9.step-3 .col-itin { opacity: 1; transform: none; }
+  body.slide-p9.step-3 .col-prof { opacity: 1; transform: none; transition-delay: 0.05s; }
+  /* Emphasize spa on final step */
+  body.slide-p9.step-3 .itin-row.emphasis { animation: spaPulse 1.2s ease 0.4s; }
+  @keyframes spaPulse {
+    0%   { box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0); transform: translateX(0); }
+    35%  { box-shadow: inset 0 0 0 2px rgba(15, 118, 110, 0.45); transform: translateX(2px); }
+    100% { box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.18); transform: translateX(0); }
+  }
+</style>
+</head>
+<body
+  class="slide-p9"
+  data-steps="3"
+  data-prev="p8.html"
+  data-next="p10.html"
+  data-mode="Server"
+  data-tag="During"
+  data-phase="Server view · complete"
+  data-index="9"
+  data-total="13">
+
+<div class="stage center">
+  <div class="server-ui">
+    <div class="top-bar">
+      <div class="room">ROOM · 417 · Vineyard Suite</div>
+      <div class="who">
+        <div class="avatar">E</div>
+        <div class="name">Ms. Eliza Chen<small>3rd stay · in-stay day 1</small></div>
+      </div>
+      <div class="right">3 obs · 4 itin · profile linked</div>
+    </div>
+    <div class="cols">
+      <div class="col col-tele">
+        <div class="col-label">Observations</div>
+        <div class="telemetry" style="max-width:none;">
+          <div class="tele-row staff show"><div class="dot"></div><div class="body"><strong>Heavy luggage observed</strong><small>Staff · 2:04 PM</small></div></div>
+          <div class="tele-row staff show"><div class="dot"></div><div class="body"><strong>F&amp;B alerted · welcome water</strong><small>Auto · 2:04 PM</small></div></div>
+          <div class="tele-row sensor show"><div class="dot"></div><div class="body"><strong>Room cooled to 67°F</strong><small>HVAC · 2:06 PM</small></div></div>
+        </div>
+      </div>
+      <div class="col col-itin">
+        <div class="col-label">Itinerary</div>
+        <div class="itinerary">
+          <h5>Today &amp; tomorrow</h5>
+          <div class="itin-row show"><div class="time">3:00 PM</div><div class="what">Welcome coffee · suite<small>auto · profile</small></div></div>
+          <div class="itin-row show emphasis"><div class="time">7:00 PM</div><div class="what">Spa · Vineyard package · 60 min<small>added live · guest request · pressure / back relief</small></div></div>
+          <div class="itin-row show"><div class="time">Tomorrow · 9 AM</div><div class="what">Stanford Open House<small>shuttle · Marco</small></div></div>
+          <div class="itin-row show"><div class="time">Tomorrow · 2:30 PM</div><div class="what">Fogarty Winery · 2 guests<small>reservation pending</small></div></div>
+        </div>
+      </div>
+      <div class="col col-prof">
+        <div class="col-label">Guest profile</div>
+        <div class="profile-panel">
+          <div class="pp-row"><span class="lbl">Identity</span>Ms. Eliza Chen · 3rd stay</div>
+          <div class="pp-row"><span class="lbl">Preferences</span>King · East-facing · 67°F · coffee 7am</div>
+          <div class="pp-row"><span class="lbl">Allergies</span>No peanuts</div>
+          <div class="pp-row"><span class="lbl">Repeat patterns</span>Spa on day 1 · winery day 2</div>
+          <div class="pp-row"><span class="lbl">Property memory</span>Sand Hill · ported to Calistoga 2027</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

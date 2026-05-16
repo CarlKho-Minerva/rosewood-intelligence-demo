@@ -3,92 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rosewood Intelligence · Demo</title>
+<title>Rosewood Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared/styles.css">
+<link rel="stylesheet" href="slides/shared/styles.css">
 <style>
-  .start {
-    width: min(720px, 92vw);
-    padding: 48px;
-    border-radius: 28px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.94);
-    box-shadow: var(--shadow);
-    text-align: left;
-  }
-  .start h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 52px;
-    letter-spacing: -0.03em;
-    line-height: 1.02;
-    font-weight: 500;
-    margin-bottom: 12px;
-  }
-  .start p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-  .start .keys {
+  body { overflow: auto; }
+  .home {
+    min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    font-size: 13px;
-    color: var(--text);
+    place-items: center;
+    padding: 6vh 4vw;
   }
-  .start .keys span { padding: 8px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
-  .start .kbd { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; color: var(--brand); margin-right: 6px; }
-  .start .deck-link {
-    display: inline-block;
-    margin-top: 26px;
-    padding: 14px 22px;
-    border-radius: 14px;
-    background: var(--text);
-    color: #fff;
+  .home .card {
+    width: min(1080px, 96vw);
+    padding: 56px 56px 44px;
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  .home .eyebrow { margin-bottom: 18px; }
+  .home h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .home .tag {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 60ch;
+    margin-bottom: 36px;
+  }
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .door {
+    display: flex;
+    flex-direction: column;
+    padding: 26px;
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    background: rgba(251, 250, 248, 0.86);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
-  .start .deck-link:hover { background: var(--brand); }
-  .toc { margin-top: 26px; font-size: 12px; color: var(--muted); line-height: 1.7; }
-  .toc a { color: var(--brand); text-decoration: none; margin-right: 14px; }
+  .door:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: var(--brand-line);
+  }
+  .door .door-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 10px;
+  }
+  .door h3 {
+    font-size: 22px;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+  .door p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .door .arrow {
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brand);
+    letter-spacing: 0.04em;
+  }
+  .meta-row {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+  .meta-row a { color: var(--brand); text-decoration: none; }
+  .meta-row strong { color: var(--text); font-weight: 700; }
+  @media (max-width: 880px) { .doors { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
-<div class="stage center">
-  <div class="start">
+<div class="home">
+  <div class="card">
+    <div class="eyebrow">Hospitality 2030 · Rosewood Sand Hill · May 16, 2026</div>
     <h1>Rosewood Intelligence</h1>
-    <p>End-to-end guest memory layer — voice intake, three-panel server view, admin tickets, post-stay newsletter. 12 full-screen slides, each its own HTML file.</p>
+    <p class="tag">A calm AI memory layer for Rosewood. The room, the staff note, and the rate recommendation finally live in the same system — without adding new hardware. Three doors below: the demo flipbook, the admin operating surface, and a live ElevenLabs Scribe transcription that staff can actually press to record.</p>
 
-    <div class="keys">
-      <span><span class="kbd">→ / space / right-click</span> next step</span>
-      <span><span class="kbd">←</span> previous</span>
-      <span><span class="kbd">F</span> fullscreen</span>
-      <span><span class="kbd">R</span> restart slide</span>
+    <div class="doors">
+      <a class="door" href="slides/pre/p1.html">
+        <div class="door-tag">Demo flipbook · 12 slides</div>
+        <h3>Walk the stay end-to-end</h3>
+        <p>Pre · During · Post · Outro. Right-click or arrow keys step through each animation, then advance to the next slide. Designed for screen-record.</p>
+        <div class="arrow">Start at P1 →</div>
+      </a>
+      <a class="door" href="admin/">
+        <div class="door-tag">Admin · operating surface</div>
+        <h3>The app that wasn't even there</h3>
+        <p>Rate recommendation, ticket queue, guest list, internal wiki, and a Claude chat — modules Rosewood doesn't currently have in one place.</p>
+        <div class="arrow">Open dashboard →</div>
+      </a>
+      <a class="door" href="live/">
+        <div class="door-tag">Live · ElevenLabs Scribe v2</div>
+        <h3>Press once. Speak. The note saves.</h3>
+        <p>Real-time speech-to-text via ElevenLabs Scribe v2 Realtime. The same loop the staff uses inside the product.</p>
+        <div class="arrow">Try live transcribe →</div>
+      </a>
     </div>
 
-    <a class="deck-link" href="pre/p1.html">Start the demo →</a>
-
-    <div class="toc">
-      <strong>Pre</strong>
-      <a href="pre/p1.html">P1 voice</a>
-      <a href="pre/p2.html">P2 research</a>
-      <a href="pre/p3.html">P3 profile</a>
-      <a href="pre/p4.html">P4 welcome</a>
-      <br><strong>During</strong>
-      <a href="during/p5.html">P5 staff</a>
-      <a href="during/p6.html">P6 HVAC</a>
-      <a href="during/p7.html">P7 UI</a>
-      <a href="during/p8.html">P8 itinerary</a>
-      <a href="during/p9.html">P9 server</a>
-      <a href="during/p10.html">P10 admin</a>
-      <br><strong>Post</strong>
-      <a href="post/p11.html">P11 booth</a>
-      <a href="post/p12.html">P12 newsletter</a>
+    <div class="meta-row">
+      <span><strong>Sponsors:</strong> Anthropic · ElevenLabs</span>
+      <span><strong>Stack:</strong> Static HTML · Vercel · ElevenLabs Scribe v2 Realtime</span>
+      <span><a href="https://github.com/CarlKho-Minerva/rosewood-intelligence-demo">Public repo →</a></span>
     </div>
   </div>
 </div>

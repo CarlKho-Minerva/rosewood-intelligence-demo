@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P12 · Personalized newsletter — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  .mail-client {
+    width: min(1100px, 94vw);
+    border-radius: 22px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+  .mail-bar {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--line);
+    background: var(--panel);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .mail-bar .dot-cluster { display: flex; gap: 6px; }
+  .mail-bar .dot-cluster span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+  .mail-bar .dot-cluster span:nth-child(1) { background: #ff5f57; }
+  .mail-bar .dot-cluster span:nth-child(2) { background: #febc2e; }
+  .mail-bar .dot-cluster span:nth-child(3) { background: #28c840; }
+  .mail-bar .url {
+    flex: 1;
+    text-align: center;
+    color: var(--text);
+    text-transform: none;
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  .mail-bar .ts { color: var(--muted); }
+  .mail-header {
+    padding: 22px 28px;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+  }
+  .mail-header .av {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--brand-soft);
+    border: 1px solid var(--brand-line);
+    display: grid; place-items: center;
+    color: var(--brand);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+  }
+  .mail-header .from { font-size: 14px; font-weight: 700; color: var(--text); }
+  .mail-header .from small {
+    display: block;
+    font-weight: 500;
+    color: var(--muted);
+    margin-top: 2px;
+    font-style: italic;
+  }
+  .mail-header .meta {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .mail-subject {
+    padding: 22px 28px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 3.4vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  body.slide-p12.step-1 .mail-subject,
+  body.slide-p12.step-2 .mail-subject { opacity: 1; transform: none; }
+  .mail-body {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 26px;
+    padding: 24px 28px 32px;
+    align-items: start;
+  }
+  .mail-body .hero {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    background-size: cover; background-position: center;
+    filter: grayscale(0.18) contrast(1.04);
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  body.slide-p12.step-1 .mail-body .hero,
+  body.slide-p12.step-2 .mail-body .hero { opacity: 1; transform: none; }
+  .mail-body .copy h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.1s;
+  }
+  .mail-body .copy p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.2s;
+  }
+  body.slide-p12.step-2 .mail-body .copy h4,
+  body.slide-p12.step-2 .mail-body .copy p { opacity: 1; }
+  .mail-body .copy .amen {
+    margin-top: 14px;
+    display: flex; gap: 8px; flex-wrap: wrap;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+  }
+  body.slide-p12.step-2 .mail-body .copy .amen { opacity: 1; }
+  .mail-body .copy .amen span {
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .mail-body .cta {
+    margin-top: 22px;
+    padding: 14px 20px;
+    border-radius: 14px;
+    background: var(--text);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    display: inline-block;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.4s;
+  }
+  body.slide-p12.step-2 .mail-body .cta { opacity: 1; }
+  @media (max-width: 820px) { .mail-body { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body
+  class="slide-p12"
+  data-steps="2"
+  data-prev="p11.html"
+  data-next="../outro/p13.html"
+  data-tag="Post"
+  data-phase="Newsletter"
+  data-index="12"
+  data-total="13">
+
+<div class="stage center">
+  <div class="mail-client">
+    <div class="mail-bar">
+      <div class="dot-cluster"><span></span><span></span><span></span></div>
+      <div class="url">mail.rosewoodhotels.com · concierge@sandhill</div>
+      <div class="ts">3 days later · 9:41 AM</div>
+    </div>
+    <div class="mail-header">
+      <div class="av">R</div>
+      <div class="from">
+        Rosewood Sand Hill · concierge
+        <small>"This was you a few days ago."</small>
+      </div>
+      <div class="meta">Inbox · personal</div>
+    </div>
+    <div class="mail-subject">Come back, Ms. Chen.</div>
+    <div class="mail-body">
+      <div class="hero" style="background-image: url('../../public/photo-of-stay.png');"></div>
+      <div class="copy">
+        <h4>Three things waiting for you next time.</h4>
+        <p>Your spa hour ran over and your tour guide says you asked about Calistoga. We're opening there in 2027 — you're already on the pre-opening list, day one.</p>
+        <p>No marketing blast. Just the things you actually liked, put back in front of you.</p>
+        <div class="amen">
+          <span>Vineyard suite · returning rate</span>
+          <span>Fogarty private tasting</span>
+          <span>Stanford alumni mixer · Oct</span>
+        </div>
+        <div class="cta">Reserve the suite →</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

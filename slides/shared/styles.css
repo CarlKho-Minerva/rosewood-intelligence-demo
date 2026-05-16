@@ -1317,3 +1317,284 @@ body.slide-p8.step-3 .profile-stub .stub::after {
   height: 100%;
   text-align: center;
 }
+
+/* ===== Additions for v2 fixes (P5, P6, P9, P10, P11, P12, P13) ===== */
+
+/* Video colour grade — black-and-white with warm overlay */
+.video-slot video { filter: grayscale(1) contrast(1.04) brightness(0.96); }
+.video-slot::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(123, 99, 69, 0.18), rgba(123, 99, 69, 0.32));
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.video-slot:has(video)::before { opacity: 1; }
+
+/* P5 synthesis pill (Claude "hmmm") */
+.synth-pill {
+  margin: 14px 0;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px dashed var(--brand-line);
+  background: linear-gradient(135deg, rgba(123, 99, 69, 0.06), rgba(15, 118, 110, 0.04));
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.synth-pill.show { opacity: 1; transform: none; }
+.synth-pill .synth-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 8px;
+}
+.synth-pill .synth-tag::before {
+  content: ''; width: 6px; height: 6px;
+  border-radius: 50%; background: var(--brand);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.synth-pill em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; font-size: 16px; color: var(--brand);
+  display: block; margin-bottom: 8px;
+}
+.synth-pill strong { display: block; font-weight: 700; margin-top: 6px; color: var(--text); }
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.4); }
+}
+
+/* P6 manual AC step */
+.ac-unit .reading .digits {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.6, -0.1, 0.4, 1.4), color 0.45s ease;
+}
+.ac-unit .ac-target {
+  margin-top: 14px;
+  display: flex; justify-content: center; gap: 10px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted);
+}
+.ac-unit .ac-target b { color: var(--brand); font-weight: 800; }
+body.slide-p6 .reading .digits { color: var(--text); }
+body.slide-p6.step-1 .reading .digits { animation: tempStep 0.55s ease; color: var(--brand); }
+body.slide-p6.step-2 .reading .digits { animation: tempStep 0.55s ease; color: var(--brand); }
+body.slide-p6.step-3 .reading .digits { animation: tempLand 0.7s ease forwards; color: var(--green); }
+@keyframes tempStep {
+  0%   { transform: translateY(20px) scale(0.9); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes tempLand {
+  0%   { transform: translateY(20px) scale(0.9); opacity: 0; color: var(--brand); }
+  60%  { transform: translateY(-6px) scale(1.04); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; color: var(--green); }
+}
+
+/* P2 rate optimization overlay */
+.rate-overlay {
+  position: fixed; inset: 0;
+  background: rgba(247, 245, 241, 0.94);
+  backdrop-filter: blur(12px);
+  display: grid; place-items: center;
+  z-index: 40;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+body.slide-p2.step-3 .rate-overlay { opacity: 1; pointer-events: auto; }
+.rate-card {
+  width: min(560px, 90vw);
+  padding: 36px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.rate-card .label {
+  font-size: 11px; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 18px;
+}
+.rate-card .spinner {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 3px solid var(--line);
+  border-top-color: var(--brand);
+  margin: 0 auto 22px;
+  animation: spin 0.9s linear infinite;
+}
+.rate-card .price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.45s ease 0.7s, transform 0.45s ease 0.7s;
+}
+.rate-card .why {
+  margin-top: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0;
+  transition: opacity 0.45s ease 0.95s;
+}
+body.slide-p2.step-3 .rate-card .price,
+body.slide-p2.step-3 .rate-card .why { opacity: 1; transform: none; }
+body.slide-p2.step-3 .rate-card .spinner { animation-duration: 0.4s; opacity: 0.3; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* OSM iframe + Unsplash visual styling for P2 */
+.osm-frame {
+  width: 100%; height: 100%;
+  border: 0;
+  border-radius: 14px;
+  filter: sepia(0.25) saturate(0.85);
+}
+.unsplash-frame {
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+  filter: grayscale(0.35) sepia(0.12);
+}
+
+/* P9 emphasized spa row + profile panel column */
+.itin-row.emphasis {
+  background: linear-gradient(90deg, rgba(15,118,110,0.08), transparent);
+  border-radius: 12px;
+  padding: 14px 12px;
+  border-bottom: none;
+  box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.18);
+}
+.itin-row.emphasis .what,
+.itin-row.emphasis .what small,
+.itin-row.emphasis .time { color: var(--green); }
+.profile-panel { display: flex; flex-direction: column; gap: 10px; }
+.profile-panel .pp-row {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--text);
+}
+.profile-panel .pp-row .lbl {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* P11 booth photo reveal */
+.booth .lens .preview {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0;
+  transform: scale(1.05);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  filter: grayscale(0.25) contrast(1.04);
+}
+body.slide-p11.step-1 .booth .lens .preview { opacity: 1; transform: scale(1); }
+body.slide-p11.step-1 .booth .lens .frame-text { opacity: 0; }
+.booth .lens .frame-text { transition: opacity 0.3s ease; position: relative; z-index: 1; }
+
+/* P12 hero photo */
+.inbox .hero-photo.photo-img {
+  background-size: cover;
+  background-position: center;
+  color: transparent;
+}
+
+/* P13 outro / architecture */
+.outro-stage {
+  display: grid;
+  width: 100vw; height: 100vh;
+  padding: 6vh 5vw;
+  align-content: center;
+  gap: 22px;
+}
+.arch-diagram {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.arch-diagram .lane { padding: 20px 22px; border-right: 1px solid var(--line); }
+.arch-diagram .lane:last-child { border-right: none; }
+.arch-diagram .lane h5 {
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 10px;
+}
+.arch-diagram .lane ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column;
+  gap: 6px;
+}
+.arch-diagram .lane li {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-size: 12px;
+}
+.outro-cards {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 14px;
+}
+.outro-card {
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-soft);
+  display: flex; flex-direction: column;
+}
+.outro-card .ot {
+  font-size: 9px; font-weight: 800;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 8px;
+}
+.outro-card h4 { font-size: 16px; letter-spacing: -0.02em; }
+.outro-card p { margin-top: 6px; font-size: 12px; line-height: 1.5; color: var(--muted); }
+.outro-card .mini-photo {
+  margin-top: 10px;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background-size: cover; background-position: center;
+  filter: grayscale(0.4) sepia(0.1);
+}
+.outro-signature {
+  display: flex; align-items: center; gap: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+.outro-signature .sig-mark {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--brand-soft);
+  border: 1px solid var(--brand-line);
+  display: grid; place-items: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--brand);
+}
+.outro-signature .sig-meta { font-size: 13px; color: var(--muted); }
+.outro-signature .sig-meta strong { color: var(--text); display: block; font-weight: 700; font-size: 14px; }
