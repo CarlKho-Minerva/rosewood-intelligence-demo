@@ -9,3 +9,4 @@ assets/*.mp4
 assets/*.mov
 assets/*.webm
 !assets/.gitkeep
+.vercel
