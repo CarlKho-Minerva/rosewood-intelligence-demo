@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P8 · Itinerary builds — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p8 .itin-row.from-profile { opacity: 0; transform: translateY(6px); }
+  body.slide-p8 .itin-row.from-guest { opacity: 0; transform: translateY(6px); }
+
+  body.slide-p8.step-1 .itin-row.from-profile.r1 { opacity: 1; transform: none; transition-delay: 0.2s; }
+  body.slide-p8.step-1 .itin-row.from-profile.r2 { opacity: 1; transform: none; transition-delay: 0.4s; }
+  body.slide-p8.step-1 .itin-row.from-profile.r3 { opacity: 1; transform: none; transition-delay: 0.6s; }
+  body.slide-p8.step-2 .itin-row.from-profile.r1,
+  body.slide-p8.step-2 .itin-row.from-profile.r2,
+  body.slide-p8.step-2 .itin-row.from-profile.r3,
+  body.slide-p8.step-3 .itin-row.from-profile.r1,
+  body.slide-p8.step-3 .itin-row.from-profile.r2,
+  body.slide-p8.step-3 .itin-row.from-profile.r3 { opacity: 1; transform: none; }
+
+  body.slide-p8.step-3 .itin-row.from-guest { opacity: 1; transform: none; transition-delay: 0.3s; }
+
+  /* Pulse the arrow from profile column when step >=1 */
+  body.slide-p8.step-1 .profile-stub .stub:nth-child(1)::after { animation: arrowPulse 0.9s ease infinite; }
+  body.slide-p8.step-1 .profile-stub .stub:nth-child(2)::after { animation: arrowPulse 0.9s ease infinite 0.2s; }
+  body.slide-p8.step-1 .profile-stub .stub:nth-child(3)::after { animation: arrowPulse 0.9s ease infinite 0.4s; }
+  @keyframes arrowPulse {
+    0%, 100% { opacity: 0.4; transform: translate(0, -50%); }
+    50% { opacity: 1; transform: translate(6px, -50%); }
+  }
+</style>
+</head>
+<body
+  class="slide-p8"
+  data-steps="3"
+  data-prev="p7.html"
+  data-next="p9.html"
+  data-mode="Server"
+  data-tag="During"
+  data-phase="Itinerary builds"
+  data-index="8"
+  data-total="12">
+
+<div class="itin-stage">
+  <!-- Left: profile stubs feeding into the itinerary -->
+  <div class="col">
+    <div class="col-label">From profile</div>
+    <div class="profile-stub">
+      <div class="stub">Stanford tour interest</div>
+      <div class="stub">East-facing · coffee 7am</div>
+      <div class="stub">Winery (Fogarty)</div>
+    </div>
+  </div>
+
+  <!-- Center: itinerary -->
+  <div class="col">
+    <div class="col-label">Itinerary · drafted</div>
+    <div class="itinerary">
+      <h5>Today &amp; tomorrow</h5>
+      <div class="itin-row from-profile r1">
+        <div class="time">3:00 PM</div>
+        <div class="what">Welcome coffee · suite<small>auto · from profile · returning guest</small></div>
+      </div>
+      <div class="itin-row from-profile r2">
+        <div class="time">Tomorrow · 9:00 AM</div>
+        <div class="what">Stanford campus tour<small>booked · 32 min drive · Marco confirmed</small></div>
+      </div>
+      <div class="itin-row from-profile r3">
+        <div class="time">Tomorrow · 2:30 PM</div>
+        <div class="what">Fogarty Winery · 2 guests<small>opening · reservation pending</small></div>
+      </div>
+      <div class="itin-row from-guest r4">
+        <div class="time">Tonight · 7:00 PM</div>
+        <div class="what">Spa · 60 min · Vineyard package<small>added live · per guest request</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: server asking the guest -->
+  <div class="col">
+    <div class="col-label">Live · server check-in</div>
+    <div class="video-slot" style="aspect-ratio: 4 / 5; height: auto;" data-src="">
+      <div class="slot-label">
+        <div class="slot-glyph">▶</div>
+        <div class="slot-tag">Video · concierge</div>
+        <div class="slot-headline">"What would you like to do?" · "Maybe a spa"</div>
+        <div class="slot-meta">drop path into data-src</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

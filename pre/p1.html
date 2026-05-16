@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P1 · Voice intake — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body
+  class="slide-p1"
+  data-steps="3"
+  data-prev=""
+  data-next="p2.html"
+  data-mode="Server"
+  data-tag="Pre"
+  data-phase="Voice intake"
+  data-index="1"
+  data-total="12">
+
+<div class="stage split-50">
+  <!--
+    Left pane: video placeholder for the user's phone-call recording.
+    Drop a file path into data-src to swap in the real video.
+  -->
+  <div class="pane dim" style="padding: 0;">
+    <div class="video-pane">
+      <div class="video-slot" data-src="">
+        <div class="slot-label">
+          <div class="slot-glyph">▶</div>
+          <div class="slot-tag">Video · phone call</div>
+          <div class="slot-headline">Guest on call with Rosewood concierge</div>
+          <div class="slot-meta">drop path into data-src</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right pane: empty contact profile form, fills in over 3 steps -->
+  <div class="pane surface">
+    <div class="form-card">
+      <div class="label-row">
+        <div class="who">
+          <div class="avatar">G</div>
+          <h4>New guest profile</h4>
+        </div>
+        <span class="small-tag">Auto-fill · live</span>
+      </div>
+
+      <div class="field" data-fld="1">
+        <div class="field-label">Full name</div>
+        <div class="field-input">
+          <span class="field-value">Ms. Eliza Chen</span>
+          <span class="field-cursor"></span>
+        </div>
+      </div>
+
+      <div class="field" data-fld="2">
+        <div class="field-label">Stay window</div>
+        <div class="field-input">
+          <span class="field-value">May 16 – 18 · 2 guests · King</span>
+          <span class="field-cursor"></span>
+        </div>
+      </div>
+
+      <div class="field" data-fld="3">
+        <div class="field-label">Preferences &amp; notes</div>
+        <div class="field-input">
+          <span class="field-value">No peanuts · Stanford tour · winery</span>
+          <span class="field-cursor"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Per-step DOM choreography for P1: light up cursor → fill field
+  (function() {
+    function paint() {
+      const s = parseInt(document.body.dataset.step || '0', 10);
+      document.querySelectorAll('.field').forEach((f) => {
+        const idx = parseInt(f.dataset.fld, 10);
+        f.classList.remove('live', 'done');
+        if (idx < s) f.classList.add('done');
+        if (idx === s) f.classList.add('live');
+        if (idx === s && s > 0) {
+          // small reveal delay for the cursor effect
+          setTimeout(() => {
+            f.classList.remove('live');
+            f.classList.add('done');
+          }, 420);
+        }
+      });
+    }
+    paint();
+    new MutationObserver(paint).observe(document.body, { attributes: true, attributeFilter: ['data-step'] });
+  })();
+</script>
+<script src="../shared/slide.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rosewood Intelligence · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/styles.css">
+<style>
+  .start {
+    width: min(720px, 92vw);
+    padding: 48px;
+    border-radius: 28px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: var(--shadow);
+    text-align: left;
+  }
+  .start h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .start p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .start .keys {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text);
+  }
+  .start .keys span { padding: 8px 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  .start .kbd { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 11px; color: var(--brand); margin-right: 6px; }
+  .start .deck-link {
+    display: inline-block;
+    margin-top: 26px;
+    padding: 14px 22px;
+    border-radius: 14px;
+    background: var(--text);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .start .deck-link:hover { background: var(--brand); }
+  .toc { margin-top: 26px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .toc a { color: var(--brand); text-decoration: none; margin-right: 14px; }
+</style>
+</head>
+<body>
+<div class="stage center">
+  <div class="start">
+    <h1>Rosewood Intelligence</h1>
+    <p>End-to-end guest memory layer — voice intake, three-panel server view, admin tickets, post-stay newsletter. 12 full-screen slides, each its own HTML file.</p>
+
+    <div class="keys">
+      <span><span class="kbd">→ / space / right-click</span> next step</span>
+      <span><span class="kbd">←</span> previous</span>
+      <span><span class="kbd">F</span> fullscreen</span>
+      <span><span class="kbd">R</span> restart slide</span>
+    </div>
+
+    <a class="deck-link" href="pre/p1.html">Start the demo →</a>
+
+    <div class="toc">
+      <strong>Pre</strong>
+      <a href="pre/p1.html">P1 voice</a>
+      <a href="pre/p2.html">P2 research</a>
+      <a href="pre/p3.html">P3 profile</a>
+      <a href="pre/p4.html">P4 welcome</a>
+      <br><strong>During</strong>
+      <a href="during/p5.html">P5 staff</a>
+      <a href="during/p6.html">P6 HVAC</a>
+      <a href="during/p7.html">P7 UI</a>
+      <a href="during/p8.html">P8 itinerary</a>
+      <a href="during/p9.html">P9 server</a>
+      <a href="during/p10.html">P10 admin</a>
+      <br><strong>Post</strong>
+      <a href="post/p11.html">P11 booth</a>
+      <a href="post/p12.html">P12 newsletter</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

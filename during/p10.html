@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P10 · Ticket created · Admin — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+</head>
+<body
+  class="slide-p10"
+  data-steps="3"
+  data-prev="p9.html"
+  data-next="../post/p11.html"
+  data-mode="Admin"
+  data-tag="During"
+  data-phase="Ticket · Admin"
+  data-index="10"
+  data-total="12">
+
+<div class="admin-stage">
+
+  <!--
+    Step 1: the broken-text overlay fades in centered.
+    Step 2: the overlay shrinks + animates into the right column of the admin
+            dashboard, which itself fades in. The ticket card materializes.
+    Step 3: a second ticket gets routed, demonstrating the queue.
+  -->
+  <div class="broken-text">"The sink is broken."</div>
+
+  <div class="admin-shell">
+    <div class="top-bar">
+      <h6>Admin · Sand Hill ·  property dashboard</h6>
+      <span class="mode-pill">Admin view</span>
+    </div>
+    <div class="admin-cols">
+      <!-- Left column: rate recommendation -->
+      <div class="col">
+        <div class="col-label">Rate recommendation</div>
+        <div class="rate-row">
+          <span class="day">FRI · 5/17</span>
+          <span class="price">$1,485</span>
+          <span class="delta up">+8%</span>
+        </div>
+        <div class="rate-row">
+          <span class="day">SAT · 5/18</span>
+          <span class="price">$1,620</span>
+          <span class="delta up">+14%</span>
+        </div>
+        <div class="rate-row">
+          <span class="day">SUN · 5/19</span>
+          <span class="price">$1,380</span>
+          <span class="delta down">−4%</span>
+        </div>
+        <div style="margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: var(--green-soft); border: 1px solid rgba(15,118,110,0.2); font-size: 12px; color: var(--green); font-weight: 600; line-height: 1.5;">
+          Stanford Open House detected · Reventel override + $28K weekend upside
+        </div>
+      </div>
+
+      <!-- Center: ticket queue (where the broken-text lands) -->
+      <div class="col">
+        <div class="col-label">Ticket queue · live</div>
+        <div class="ticket-card">
+          <span class="ticket-tag">HVAC · Room 417</span>
+          <div class="ticket-title">"The sink is broken."</div>
+          <div class="ticket-meta">Captured · ElevenLabs STT · routed automatically</div>
+          <div class="ticket-route">→ Maintenance · floor 4 · ETA 11 min</div>
+        </div>
+        <div class="ticket-card" style="opacity: 0;" id="t2">
+          <span class="ticket-tag">F&amp;B · Room 417</span>
+          <div class="ticket-title">Welcome water · per dehydration flag</div>
+          <div class="ticket-meta">Auto · from observation P5</div>
+          <div class="ticket-route">→ F&amp;B · floor 4 · sent</div>
+        </div>
+      </div>
+
+      <!-- Right: guest snapshot -->
+      <div class="col">
+        <div class="col-label">Guests · checked in</div>
+        <div class="guest-card">
+          <div class="av">E</div>
+          <div class="name">Ms. Eliza Chen<small>Room 417 · 3rd stay</small></div>
+        </div>
+        <div class="guest-card">
+          <div class="av">J</div>
+          <div class="name">Mr. Jain<small>Room 312 · 1st stay</small></div>
+        </div>
+        <div class="guest-card">
+          <div class="av">A</div>
+          <div class="name">Dr. Adler<small>Room 511 · 7th stay</small></div>
+        </div>
+        <div style="margin-top: auto; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; padding-top: 14px;">
+          Opera · source of record · synced 12s ago
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  body.slide-p10.step-3 #t2 { opacity: 1 !important; transition: opacity 0.6s ease 0.1s; }
+</style>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

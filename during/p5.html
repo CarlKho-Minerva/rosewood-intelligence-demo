@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P5 · Staff observation — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p5.step-1 .tele-row.r1 { transition-delay: 0.1s; }
+  body.slide-p5.step-1 .tele-row.r1,
+  body.slide-p5.step-2 .tele-row.r1,
+  body.slide-p5.step-2 .tele-row.r2 { opacity: 1; transform: none; }
+  body.slide-p5.step-2 .tele-row.r2 { transition-delay: 0.1s; }
+</style>
+</head>
+<body
+  class="slide-p5"
+  data-steps="2"
+  data-prev="../pre/p4.html"
+  data-next="p6.html"
+  data-mode="Server"
+  data-tag="During"
+  data-phase="Staff observation"
+  data-index="5"
+  data-total="12">
+
+<div class="stage split-50">
+  <!-- Left: server speaking to phone -->
+  <div class="pane dim" style="padding: 0;">
+    <div class="video-pane">
+      <div class="video-slot" data-src="">
+        <div class="slot-label">
+          <div class="slot-glyph">▶</div>
+          <div class="slot-tag">Video · server capture</div>
+          <div class="slot-headline">Server dictates to phone · "heavy bags, looks dehydrated"</div>
+          <div class="slot-meta">drop path into data-src</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: telemetry stream -->
+  <div class="pane surface">
+    <div class="telemetry">
+      <h5>Telemetry · stay stream</h5>
+      <div class="tele-row staff r1">
+        <div class="dot"></div>
+        <div class="body">
+          <strong>Heavy luggage observed</strong>
+          <small>Staff · Marco · 2:04 PM · ElevenLabs STT</small>
+        </div>
+      </div>
+      <div class="tele-row staff r2">
+        <div class="dot"></div>
+        <div class="body">
+          <strong>Likely dehydrated · F&amp;B alerted</strong>
+          <small>Staff · Marco · 2:04 PM · routed to F&amp;B floor 4</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

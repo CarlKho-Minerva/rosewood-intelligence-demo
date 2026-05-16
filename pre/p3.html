@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P3 · Profile formed — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p3 .profile-card .avatar-lg,
+  body.slide-p3 .profile-card .name,
+  body.slide-p3 .profile-card .meta,
+  body.slide-p3 .profile-card .tags { opacity: 0; transform: translateY(8px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  body.slide-p3 .profile-card .avatar-lg { transition-delay: 0.05s; }
+  body.slide-p3 .profile-card .name { transition-delay: 0.18s; }
+  body.slide-p3 .profile-card .meta { transition-delay: 0.32s; }
+  body.slide-p3 .profile-card .tags { transition-delay: 0.50s; }
+  body.slide-p3.step-1 .profile-card .avatar-lg,
+  body.slide-p3.step-1 .profile-card .name,
+  body.slide-p3.step-1 .profile-card .meta,
+  body.slide-p3.step-1 .profile-card .tags { opacity: 1; transform: none; }
+</style>
+</head>
+<body
+  class="slide-p3"
+  data-steps="1"
+  data-prev="p2.html"
+  data-next="p4.html"
+  data-mode="Server"
+  data-tag="Pre"
+  data-phase="Profile formed"
+  data-index="3"
+  data-total="12">
+
+<div class="stage center">
+  <div class="profile-card">
+    <div class="avatar-lg">E</div>
+    <div class="name">Ms. Eliza Chen</div>
+    <div class="meta">3rd stay · Vineyard Suite · arriving 2:00 PM · May 16</div>
+    <div class="tags">
+      <span class="tag">King bed</span>
+      <span class="tag">No peanuts</span>
+      <span class="tag">East-facing</span>
+      <span class="tag green">Stanford tour</span>
+      <span class="tag green">Winery</span>
+      <span class="tag">Coffee · 7am</span>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>

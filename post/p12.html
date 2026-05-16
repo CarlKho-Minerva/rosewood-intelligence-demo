@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P12 · Personalized newsletter — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p12.step-1 .inbox { } /* inbox already visible */
+  body.slide-p12.step-2 .inbox { }
+  body.slide-p12.step-1 .inbox .hero-photo { opacity: 1; transform: none; }
+  body.slide-p12.step-2 .inbox .hero-photo { opacity: 1; transform: none; }
+  body.slide-p12.step-2 .inbox .copy h3,
+  body.slide-p12.step-2 .inbox .copy p { opacity: 1; transform: none; }
+  body.slide-p12.step-2 .inbox .copy .amenities { opacity: 1; }
+</style>
+</head>
+<body
+  class="slide-p12"
+  data-steps="2"
+  data-prev="p11.html"
+  data-next=""
+  data-tag="Post"
+  data-phase="Newsletter"
+  data-index="12"
+  data-total="12">
+
+<div class="stage center">
+  <div class="inbox">
+    <div class="ibx-top">
+      <div class="from-avatar">R</div>
+      <div class="ibx-meta">
+        <div class="from">Rosewood Sand Hill · concierge</div>
+        <div class="subject"><span class="serif">"This was you a few days ago."</span></div>
+      </div>
+      <div class="ibx-time">3 days later</div>
+    </div>
+    <div class="ibx-body">
+      <div class="hero-photo">photo of you in pool · May 18</div>
+      <div class="copy">
+        <h3>Come back, Ms. Chen.</h3>
+        <p>Your spa hour ran over and your tour guide says you asked about Calistoga. We're opening there in 2027 — you're on the pre-opening list.</p>
+        <p>Three things waiting for you next time:</p>
+        <div class="amenities">
+          <span class="amenity">Vineyard suite · returning rate</span>
+          <span class="amenity">Fogarty private tasting</span>
+          <span class="amenity">Stanford alumni mixer · Oct</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Drive inbox classes by step
+  (function() {
+    function paint() {
+      const s = parseInt(document.body.dataset.step || '0', 10);
+      const ibx = document.querySelector('.inbox');
+      ibx.classList.toggle('show-photo', s >= 1);
+      ibx.classList.toggle('show-copy', s >= 2);
+    }
+    paint();
+    new MutationObserver(paint).observe(document.body, { attributes: true, attributeFilter: ['data-step'] });
+  })();
+</script>
+<script src="../shared/slide.js"></script>
+</body>
+</html>

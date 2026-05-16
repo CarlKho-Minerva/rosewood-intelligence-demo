@@ -1,0 +1,11 @@
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+*.log
+
+# Video drop-ins are optional and large; track them only if intentional.
+assets/*.mp4
+assets/*.mov
+assets/*.webm
+!assets/.gitkeep

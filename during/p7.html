@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>P7 · Server UI fades in — Rosewood Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/styles.css">
+<style>
+  body.slide-p7 .server-ui .col-tele,
+  body.slide-p7 .server-ui .col-itin,
+  body.slide-p7 .server-ui .col-tix { opacity: 0; transform: translateY(8px); }
+  body.slide-p7.step-1 .server-ui .col-tele { opacity: 1; transform: none; transition-delay: 0.15s; }
+  body.slide-p7 .tele-row.r1,
+  body.slide-p7 .tele-row.r2,
+  body.slide-p7 .tele-row.r3 { opacity: 0; transform: translateX(18px); }
+  body.slide-p7.step-1 .tele-row.r1 { opacity: 1; transform: none; transition-delay: 0.4s; }
+  body.slide-p7.step-1 .tele-row.r2 { opacity: 1; transform: none; transition-delay: 0.55s; }
+  body.slide-p7.step-1 .tele-row.r3 { opacity: 1; transform: none; transition-delay: 0.70s; }
+</style>
+</head>
+<body
+  class="slide-p7"
+  data-steps="1"
+  data-prev="p6.html"
+  data-next="p8.html"
+  data-mode="Server"
+  data-tag="During"
+  data-phase="Server UI"
+  data-index="7"
+  data-total="12">
+
+<div class="stage center">
+  <div class="server-ui">
+    <div class="top-bar">
+      <div class="room">ROOM · 417 · Vineyard Suite</div>
+      <div class="who">
+        <div class="avatar">E</div>
+        <div class="name">Ms. Eliza Chen<small>3rd stay · checked in 2:00 PM</small></div>
+      </div>
+      <div class="right">stay #03 · history →</div>
+    </div>
+    <div class="cols">
+      <div class="col col-tele">
+        <div class="col-label">Observations</div>
+        <div class="telemetry" style="max-width:none;">
+          <div class="tele-row staff r1">
+            <div class="dot"></div>
+            <div class="body">
+              <strong>Heavy luggage observed</strong>
+              <small>Staff · Marco · 2:04 PM</small>
+            </div>
+          </div>
+          <div class="tele-row staff r2">
+            <div class="dot"></div>
+            <div class="body">
+              <strong>Likely dehydrated · F&amp;B alerted</strong>
+              <small>Staff · Marco · 2:04 PM</small>
+            </div>
+          </div>
+          <div class="tele-row sensor r3">
+            <div class="dot"></div>
+            <div class="body">
+              <strong>Room cooled to 67°F</strong>
+              <small>Sensor · HVAC · 2:06 PM</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-itin">
+        <div class="col-label">Itinerary</div>
+        <div style="color: var(--muted); font-size: 13px; font-style: italic;">
+          Drafting from profile…
+        </div>
+      </div>
+      <div class="col col-tix">
+        <div class="col-label">Tickets</div>
+        <div style="color: var(--muted); font-size: 13px; font-style: italic;">
+          None open
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../shared/slide.js"></script>
+</body>
+</html>
