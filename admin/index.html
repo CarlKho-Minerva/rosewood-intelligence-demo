@@ -216,6 +216,41 @@
     .ad-grid { grid-template-columns: 1fr; }
     .wide, .double, .single { grid-column: span 1; }
   }
+
+  /* Tab bar */
+  .tab-bar {
+    display: flex; gap: 6px; padding: 4px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+    width: fit-content;
+  }
+  .tab-btn {
+    padding: 9px 20px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer; color: var(--muted);
+    transition: all 0.18s;
+  }
+  .tab-btn.active { background: var(--text); color: #fff; }
+  .tab-btn:not(.active):hover { background: var(--panel); color: var(--text); }
+
+  /* Tab pane */
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  /* Server tab: override slide-sized server-ui to fit admin layout */
+  #tab-server .server-ui {
+    width: 100%; height: auto; min-height: 540px;
+    border-radius: 22px;
+  }
+  #tab-server .server-ui .cols { height: auto; min-height: 480px; }
+  #tab-server .server-ui .col { opacity: 1; transform: none; overflow: visible; }
 </style>
 </head>
 <body>
@@ -234,6 +269,12 @@
     </div>
   </div>
 
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="admin">Admin ops</button>
+    <button class="tab-btn" data-tab="server">Server · Room 417</button>
+  </div>
+
+  <div id="tab-admin" class="tab-pane active">
   <div class="ad-grid">
     <!-- Rate recommendation -->
     <div class="module">
@@ -345,6 +386,64 @@
       </div>
     </div>
   </div>
+  </div><!-- /tab-admin -->
+
+  <!-- Server tab: P9 three-panel view for Ms. Eliza Chen -->
+  <div id="tab-server" class="tab-pane">
+    <div class="server-ui">
+      <div class="top-bar">
+        <div class="room">ROOM · 417 · Vineyard Suite</div>
+        <div class="who">
+          <div class="avatar">E</div>
+          <div class="name">Ms. Eliza Chen<small>3rd stay · in-stay day 1</small></div>
+        </div>
+        <div class="right" style="text-align:right; font-size:12px; color:var(--muted);">3 obs · 4 itin · profile linked</div>
+      </div>
+      <div class="cols">
+
+        <!-- Observations + Claude synthesis -->
+        <div class="col show">
+          <div class="col-label">Observations</div>
+          <div class="telemetry" style="max-width:none;">
+            <div class="tele-row staff show"><div class="dot"></div><div class="body"><strong>Heavy luggage observed</strong><small>Staff · Marco · 2:04 PM</small></div></div>
+            <div class="tele-row staff show"><div class="dot"></div><div class="body"><strong>F&amp;B alerted · welcome water</strong><small>Auto · 2:04 PM</small></div></div>
+            <div class="tele-row sensor show"><div class="dot"></div><div class="body"><strong>Room cooled to 67°F · welcome temp</strong><small>HVAC · 2:06 PM</small></div></div>
+          </div>
+          <div class="synth-pill show" style="margin-top:16px;">
+            <div class="synth-tag">Claude synthesis</div>
+            <em>Heavy bags + warm afternoon — likely dehydrated. Send chilled water before guest enters room.</em>
+            <strong>Mention bag offer at checkout.</strong>
+          </div>
+        </div>
+
+        <!-- Itinerary -->
+        <div class="col show">
+          <div class="col-label">Itinerary</div>
+          <div class="itinerary">
+            <h5>Today &amp; tomorrow</h5>
+            <div class="itin-row show"><div class="time">3:00 PM</div><div class="what">Welcome coffee · suite<small>auto · profile</small></div></div>
+            <div class="itin-row show emphasis"><div class="time">7:00 PM</div><div class="what">Spa · Vineyard package · 60 min<small>added live · guest request · pressure / back relief</small></div></div>
+            <div class="itin-row show"><div class="time">Tomorrow · 9 AM</div><div class="what">Stanford Open House<small>shuttle · Marco</small></div></div>
+            <div class="itin-row show"><div class="time">Tomorrow · 2:30 PM</div><div class="what">Fogarty Winery · 2 guests<small>reservation pending</small></div></div>
+          </div>
+        </div>
+
+        <!-- Guest profile -->
+        <div class="col show">
+          <div class="col-label">Guest profile</div>
+          <div class="profile-panel">
+            <div class="pp-row"><span class="lbl">Identity</span>Ms. Eliza Chen · 3rd stay</div>
+            <div class="pp-row"><span class="lbl">Preferences</span>King · East-facing · 67°F · coffee 7am</div>
+            <div class="pp-row"><span class="lbl">Allergies</span>No peanuts</div>
+            <div class="pp-row"><span class="lbl">Repeat patterns</span>Spa on day 1 · winery day 2</div>
+            <div class="pp-row"><span class="lbl">Property memory</span>Sand Hill · ported to Calistoga 2027</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /tab-server -->
+
 </div>
 
 <script>
@@ -388,6 +487,16 @@
   input.addEventListener('keydown', (e) => { if (e.key === 'Enter') ask(input.value.trim()); });
   document.querySelectorAll('.chat-suggest button').forEach((btn) => {
     btn.addEventListener('click', () => ask(btn.dataset.q));
+  });
+
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
   });
 </script>
 </body>
