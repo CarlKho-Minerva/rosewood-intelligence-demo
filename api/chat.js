@@ -7,13 +7,13 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { messages } = req.body || {};
+  const { messages, system: customSystem } = req.body || {};
   if (!messages || !Array.isArray(messages)) {
     res.status(400).json({ error: 'messages array required' });
     return;
   }
 
-  const SYSTEM = `You are the Rosewood Intelligence assistant at Rosewood Sand Hill.
+  const SYSTEM = customSystem || `You are the Rosewood Intelligence assistant at Rosewood Sand Hill.
 Property context:
 - 5-star boutique hotel in Menlo Park/Silicon Valley. 117 rooms. AAA Five Diamond.
 - Current guest: Eliza Chen, 3rd stay, Vineyard Suite east-facing. Profile: no peanuts, coffee 7AM, winery interest, Stanford tour booked. Added spa tonight at arrival.
