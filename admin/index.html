@@ -348,20 +348,10 @@
 </div>
 
 <script>
-  // Scripted demo responses — wired this way so it works without an API key
-  // in the public repo. Swap for a real /api/chat endpoint later.
-  const responses = {
-    "What does Eliza Chen care about this trip?":
-      "Ms. Chen is on her 3rd stay (Vineyard Suite, east-facing, 67°F). The pre-arrival call surfaced winery interest and a Stanford tour. Profile flags: no peanuts, coffee at 7 AM. She added a spa hour for tonight on arrival — likely pressure-relief. Suggest: confirm Fogarty tasting (private) for Sunday + offer Calistoga 2027 pre-opening invitation tomorrow at checkout.",
-    "Why is Saturday's rate up 14%?":
-      "Reventel base for Saturday is $1,420. Stanford Open House (5/18) is in the wiki event calendar; 70% of incoming guests have past Sand Hill stays. Demand signal + winery weekend bumps recommended rate to $1,620 (+14%). Projected weekend upside: +$28K vs default override.",
-    "Who's checking in tomorrow and what should staff prep?":
-      "5 returning guests inbound tomorrow. 3 want east-facing rooms; 1 anniversary stay (Dr. Adler, 7th visit — table at 7 PM is on the ticket queue). Prep: welcome water in all Vineyard suites, coffee carts staged for 7 AM, and the Calistoga 2027 letter folded into the welcome packet for the top-3 spend guests."
-  };
-
   const chat = document.getElementById('chat');
   const input = document.getElementById('chat-input');
   const send = document.getElementById('chat-send');
+  const history = [];
 
   function addMsg(text, who, meta) {
     const m = document.createElement('div');
@@ -371,16 +361,27 @@
     chat.scrollTop = chat.scrollHeight;
   }
 
-  function ask(q) {
+  async function ask(q) {
     if (!q) return;
     addMsg(q, 'user');
     input.value = '';
     chat.classList.add('thinking');
-    const answer = responses[q] || "I can answer questions about specific guests, rates, or operations. Try one of the suggestions below.";
-    setTimeout(() => {
+    history.push({ role: 'user', content: q });
+    try {
+      const r = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      const data = await r.json();
+      const answer = data.text || data.error || 'No response.';
       chat.classList.remove('thinking');
       addMsg(answer, 'bot', 'Claude · grounded on wiki + guest memory');
-    }, 1200);
+      history.push({ role: 'assistant', content: answer });
+    } catch (err) {
+      chat.classList.remove('thinking');
+      addMsg('Connection error — API endpoint may not be configured.', 'bot', 'Error');
+    }
   }
 
   send.addEventListener('click', () => ask(input.value.trim()));
